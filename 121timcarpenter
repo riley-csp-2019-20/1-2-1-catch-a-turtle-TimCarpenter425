@@ -1,0 +1,100 @@
+#-----import statements-----
+
+import turtle as trtl
+import random as rand
+
+#-----game configuration----
+
+tshapes = ["arrow", "circle", "square", "triangle", "classic", "turtle"]
+tcolor = "black"
+tshape = "turtle"
+tsize = 4
+score = 0
+timer = 30
+font_setup = ("Arial", 40, "normal")
+counter_interval = 1000
+timer_up = False
+
+#-----initialize turtle-----
+
+background_t = trtl.Turtle()
+background_t.ht()
+background_t.speed(0)
+background_t.color("chartreuse")
+background_t.pensize(10000)
+background_t.circle(1)
+
+t = trtl.Turtle()
+t.penup()
+t.speed(0)
+t.shape(tshape)
+t.shapesize(tsize)
+t.setheading(90)
+
+box_t = trtl.Turtle()
+box_t.pensize(2)
+box_t.ht()
+box_t.speed(0)
+box_t.penup()
+box_t.setheading(270)
+box_t.goto(360, 400)
+box_t.pendown()
+box_t.forward(110)
+box_t.left(90)
+box_t.forward(150)
+
+score_t = trtl.Turtle()
+score_t.ht()
+score_t.speed(0)
+score_t.penup()
+score_t.goto(390, 320)
+score_t.pendown()
+
+counter_t = trtl.Turtle()
+counter_t.ht()
+counter_t.speed(0)
+counter_t.penup()
+counter_t.goto(230, -370)
+
+#-----game functions--------
+
+def t_clicked(x, y):
+  global timer
+  if(timer > 0):
+    decrease_size()
+    update_score()
+    change_position()
+  if(timer <= 0):
+    t.color("red")
+    t.setheading(270)
+def update_score():
+  global score
+  score += 1
+  score_t.clear()
+  score_t.write(score, font=font_setup)
+def decrease_size():
+  global tsize
+  if(tsize > 1):
+    tsize -= 0.05
+    t.shapesize(tsize)
+def change_position():
+  new_xpos = rand.randint(-400,  400)
+  new_ypos = rand.randint(-300, 300)
+  t.goto(new_xpos, new_ypos)
+def countdown():
+  global timer, timer_up
+  counter_t.clear()
+  if timer <= 0:
+    counter_t.write("Time's Up", font=font_setup)
+    timer_up = True
+  else:
+    counter_t.write("Time: " + str(timer), font=font_setup)
+    timer -= 1
+    counter_t.getscreen().ontimer(countdown, counter_interval)
+
+#-----events----------------
+
+t.onclick(t_clicked)
+wn = trtl.Screen()
+wn.ontimer(countdown, counter_interval) 
+wn.mainloop()
