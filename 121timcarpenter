@@ -5,35 +5,156 @@ import random as rand
 
 #-----game configuration----
 
-tshapes = ["arrow", "circle", "square", "triangle", "classic", "turtle"]
-tcolor = "black"
-tshape = "turtle"
-tsize = 4
+print("Difficulty Settings = Easy, Normal, Impossible, Cheating")
+difficulty = input("Difficulty Setting = ")
+if difficulty == "Easy":
+  bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+  btcolor = "black"
+  stcolor = "black"
+  ctcolor = "black"
+  tsize = 4.5
+  timer = 31
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      update_score()
+      change_position()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
+if difficulty == "Normal":
+  bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+  btcolor = "black"
+  stcolor = "black"
+  ctcolor = "black"
+  tsize = 4
+  timer = 31
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      decrease_size()
+      update_score()
+      change_position()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
+if difficulty == "Impossible":
+  bcolors = ["black"]
+  btcolor = "white"
+  stcolor = "white"
+  ctcolor = "white"
+  tsize = 5
+  timer = 46
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      decrease_size()
+      update_score()
+      change_position()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
+if difficulty == "Cheating":
+  bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+  btcolor = "black"
+  stcolor = "black"
+  ctcolor = "black"
+  tsize = 4
+  timer = 1000000
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      update_score()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
+if difficulty == "easy":
+  bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+  btcolor = "black"
+  stcolor = "black"
+  ctcolor = "black"
+  tsize = 4.5
+  timer = 31
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      update_score()
+      change_position()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
+if difficulty == "normal":
+  bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+  btcolor = "black"
+  stcolor = "black"
+  ctcolor = "black"
+  tsize = 4
+  timer = 31
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      decrease_size()
+      update_score()
+      change_position()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
+if difficulty == "impossible":
+  bcolors = ["black"]
+  btcolor = "white"
+  stcolor = "white"
+  ctcolor = "white"
+  tsize = 5
+  timer = 46
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      decrease_size()
+      update_score()
+      change_position()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
+if difficulty == "cheating":
+  bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+  btcolor = "black"
+  stcolor = "black"
+  ctcolor = "black"
+  tsize = 4
+  timer = 1000000
+  def t_clicked(x, y):
+    global timer
+    if(timer > 0):
+      update_score()
+    if(timer == 0):
+      t.color("red")
+      t.setheading(270)
 score = 0
-timer = 30
 font_setup = ("Arial", 40, "normal")
 counter_interval = 1000
 timer_up = False
+bcolor = rand.choice(bcolors)
 
 #-----initialize turtle-----
 
 background_t = trtl.Turtle()
 background_t.ht()
 background_t.speed(0)
-background_t.color("chartreuse")
+background_t.color(bcolor)
 background_t.pensize(10000)
 background_t.circle(1)
 
 t = trtl.Turtle()
 t.penup()
 t.speed(0)
-t.shape(tshape)
+t.shape("turtle")
 t.shapesize(tsize)
 t.setheading(90)
 
 box_t = trtl.Turtle()
 box_t.pensize(2)
 box_t.ht()
+box_t.pencolor(btcolor)
 box_t.speed(0)
 box_t.penup()
 box_t.setheading(270)
@@ -45,6 +166,7 @@ box_t.forward(150)
 
 score_t = trtl.Turtle()
 score_t.ht()
+score_t.pencolor(stcolor)
 score_t.speed(0)
 score_t.penup()
 score_t.goto(390, 320)
@@ -52,21 +174,13 @@ score_t.pendown()
 
 counter_t = trtl.Turtle()
 counter_t.ht()
+counter_t.pencolor(ctcolor)
 counter_t.speed(0)
 counter_t.penup()
 counter_t.goto(230, -370)
 
 #-----game functions--------
 
-def t_clicked(x, y):
-  global timer
-  if(timer > 0):
-    decrease_size()
-    update_score()
-    change_position()
-  if(timer <= 0):
-    t.color("red")
-    t.setheading(270)
 def update_score():
   global score
   score += 1
@@ -75,7 +189,7 @@ def update_score():
 def decrease_size():
   global tsize
   if(tsize > 1):
-    tsize -= 0.05
+    tsize -= 0.075
     t.shapesize(tsize)
 def change_position():
   new_xpos = rand.randint(-400,  400)
@@ -84,11 +198,12 @@ def change_position():
 def countdown():
   global timer, timer_up
   counter_t.clear()
-  if timer <= 0:
+  if timer == 1:
+    timer_up == True
+    timer -= 1
     counter_t.write("Time's Up", font=font_setup)
-    timer_up = True
-  else:
-    counter_t.write("Time: " + str(timer), font=font_setup)
+  if timer > 1:
+    counter_t.write("Time: " + str(timer - 1), font=font_setup)
     timer -= 1
     counter_t.getscreen().ontimer(countdown, counter_interval)
 
