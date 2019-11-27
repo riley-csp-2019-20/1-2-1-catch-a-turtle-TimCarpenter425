@@ -5,8 +5,11 @@ import random as rand
 
 #-----game configuration----
 
-print("Difficulty Settings = Easy, Normal, Impossible, Cheating")
+print("Difficulty Settings = Easy, Normal, Hard, Impossible, Cheating")
 difficulty = input("Difficulty Setting = ")
+wn = trtl.Screen()
+wn.setup(width=1.0, height=1.0)
+score = 0
 if difficulty == "Easy":
   bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
   btcolor = "black"
@@ -14,6 +17,7 @@ if difficulty == "Easy":
   ctcolor = "black"
   tsize = 4.5
   timer = 31
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -22,6 +26,8 @@ if difficulty == "Easy":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
+  def mt_clicked(x, y):
+    global score
 if difficulty == "Normal":
   bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
   btcolor = "black"
@@ -29,6 +35,7 @@ if difficulty == "Normal":
   ctcolor = "black"
   tsize = 4
   timer = 31
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -38,6 +45,31 @@ if difficulty == "Normal":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
+  def mt_clicked(x, y):
+    global score
+if difficulty == "Hard":
+    bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+    btcolor = "black"
+    stcolor = "black"
+    ctcolor = "black"
+    tsize = 4
+    timer = 31
+    addscore = 2
+    def t_clicked(x, y):
+      global timer
+      if(timer > 0):
+        decrease_size()
+        update_score()
+        change_position()
+        if(timer == 0):
+          t.color("red")
+          t.setheading(270)
+    def mt_clicked(x, y):
+        global score
+        if(timer > 0):
+            score -= 1
+            score_t.clear()
+            score_t.write(score, font=font_setup)
 if difficulty == "Impossible":
   bcolors = ["black"]
   btcolor = "white"
@@ -45,6 +77,7 @@ if difficulty == "Impossible":
   ctcolor = "white"
   tsize = 5
   timer = 46
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -54,6 +87,8 @@ if difficulty == "Impossible":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
+  def mt_clicked(x, y):
+    global score
 if difficulty == "Cheating":
   bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
   btcolor = "black"
@@ -61,6 +96,7 @@ if difficulty == "Cheating":
   ctcolor = "black"
   tsize = 4
   timer = 1000000
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -68,6 +104,8 @@ if difficulty == "Cheating":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
+  def mt_clicked(x, y):
+    global score
 if difficulty == "easy":
   bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
   btcolor = "black"
@@ -75,6 +113,7 @@ if difficulty == "easy":
   ctcolor = "black"
   tsize = 4.5
   timer = 31
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -83,6 +122,8 @@ if difficulty == "easy":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
+  def mt_clicked(x, y):
+    global score
 if difficulty == "normal":
   bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
   btcolor = "black"
@@ -90,6 +131,7 @@ if difficulty == "normal":
   ctcolor = "black"
   tsize = 4
   timer = 31
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -99,6 +141,31 @@ if difficulty == "normal":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
+  def mt_clicked(x, y):
+    global score
+if difficulty == "hard":
+    bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
+    btcolor = "black"
+    stcolor = "black"
+    ctcolor = "black"
+    tsize = 4
+    timer = 31
+    addscore = 2
+    def t_clicked(x, y):
+      global timer
+      if(timer > 0):
+        decrease_size()
+        update_score()
+        change_position()
+        if(timer == 0):
+          t.color("red")
+          t.setheading(270)
+    def mt_clicked(x, y):
+        global score
+        if(timer > 0):
+            score -= 1
+            score_t.clear()
+            score_t.write(score, font=font_setup)
 if difficulty == "impossible":
   bcolors = ["black"]
   btcolor = "white"
@@ -106,6 +173,7 @@ if difficulty == "impossible":
   ctcolor = "white"
   tsize = 5
   timer = 46
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -115,6 +183,8 @@ if difficulty == "impossible":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
+  def mt_clicked(x, y):
+    global score
 if difficulty == "cheating":
   bcolors = ["orange red", "crimson", "blue", "green", "yellow", "purple", "pink", "orange", "royal blue", "brown", "chartreuse", "azure", "white", "teal", "moccasin", "maroon", "violet", "gold", "cyan", "gray", "gainsboro", "silver", "indigo", "medium spring green", "dark green"]
   btcolor = "black"
@@ -122,6 +192,7 @@ if difficulty == "cheating":
   ctcolor = "black"
   tsize = 4
   timer = 1000000
+  addscore = 1
   def t_clicked(x, y):
     global timer
     if(timer > 0):
@@ -129,7 +200,8 @@ if difficulty == "cheating":
     if(timer == 0):
       t.color("red")
       t.setheading(270)
-score = 0
+  def mt_clicked(x, y):
+    global score
 font_setup = ("Arial", 40, "normal")
 counter_interval = 1000
 timer_up = False
@@ -163,6 +235,10 @@ box_t.pendown()
 box_t.forward(110)
 box_t.left(90)
 box_t.forward(150)
+box_t.left(90)
+box_t.fd(110)
+box_t.left(90)
+box_t.fd(150)
 
 score_t = trtl.Turtle()
 score_t.ht()
@@ -183,7 +259,8 @@ counter_t.goto(230, -370)
 
 def update_score():
   global score
-  score += 1
+  global addscore
+  score += addscore
   score_t.clear()
   score_t.write(score, font=font_setup)
 def decrease_size():
@@ -210,6 +287,6 @@ def countdown():
 #-----events----------------
 
 t.onclick(t_clicked)
-wn = trtl.Screen()
-wn.ontimer(countdown, counter_interval) 
+wn.onclick(mt_clicked)
+wn.ontimer(countdown, counter_interval)
 wn.mainloop()
